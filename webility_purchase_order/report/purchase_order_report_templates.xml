@@ -14,7 +14,7 @@
         </xpath>
     </template>
 -->
-    <template id="external_layout_standard_custom1" inherit_id="web.external_layout_standard">
+    <template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
         <xpath expr="//div[hasclass('pt-5')]" position="attributes">
             <attribute name="class">pt-0</attribute>
         </xpath>
