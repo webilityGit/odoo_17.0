@@ -1,0 +1,1 @@
+from . import kursna_lista
