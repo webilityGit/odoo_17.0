@@ -4,7 +4,7 @@
     'category': 'Theme/Corporate',
     'summary': 'Development, IT development, Design, Tech, Computers, IT, Blogs',
     'sequence': 110,
-    'version': '2.0.0',
+    'version': '1.0',
     'depends': ['website'],
     'data': [
         'data/generate_primary_template.xml',
@@ -21,6 +21,7 @@
         'homepage': ['s_banner', 's_image_text', 's_key_images', 's_text_image', 's_company_team_detail', 's_references_grid'],
     },
     'license': 'LGPL-3',
+    'installable': True,
     'live_test_url': 'https://theme-cobalt.odoo.com',
     'assets': {
         'website.assets_editor': [
