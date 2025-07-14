@@ -1,0 +1,18 @@
+<odoo>
+  <template id="hide_checkout_fields" inherit_id="website_sale.checkout">
+    <!-- Sakrij ceo container za adrese -->
+    <xpath expr="//div[@id='shop_checkout']" position="attributes">
+      <attribute name="t-if">0</attribute>
+    </xpath>
+    <!-- (Za svaki slučaj) Sakrij i bilo koji pojedinačni address_row i delivery_form -->
+    <xpath expr="//t[@t-call='website_sale.delivery_address_row']" position="replace">
+      <t t-if="0"/>
+    </xpath>
+    <xpath expr="//t[@t-call='website_sale.delivery_form']" position="replace">
+      <t t-if="0"/>
+    </xpath>
+    <xpath expr="//t[@t-call='website_sale.billing_address_row']" position="replace">
+      <t t-if="0"/>
+    </xpath>
+  </template>
+</odoo>
