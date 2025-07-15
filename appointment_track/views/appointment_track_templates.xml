@@ -1,0 +1,29 @@
+<odoo>
+  <!-- Nasleđujemo javni formular za potvrdu termina -->
+  <template id="track_appointment_events"
+            inherit_id="website_appointment.appointment_form"
+            priority="20">
+    <!-- 1) Dodajemo data-atribut na <form> za appointment_view + slot_id -->
+    <xpath expr="//form" position="attributes">
+      <attribute name="data-track-event">
+        {"event":"appointment_view"}
+      </attribute>
+      <attribute name="data-slot-id">
+        <t t-esc="slot.id"/>
+      </attribute>
+    </xpath>
+    <!-- 2) Ubacujemo JS posle forme da slušamo submit za appointment_confirm -->
+    <xpath expr="//form" position="after">
+      <script type="text/javascript"><![CDATA[
+        document.addEventListener('submit', function(ev) {
+          var form = ev.target;
+          if (form.tagName === 'FORM' && form.dataset.slotId) {
+            website.track_event('appointment_confirm', {
+              slot_id: parseInt(form.dataset.slotId, 10)
+            });
+          }
+        });
+      ]]></script>
+    </xpath>
+  </template>
+</odoo>
