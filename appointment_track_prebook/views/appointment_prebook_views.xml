@@ -1,0 +1,26 @@
+<odoo>
+  <record id="view_appointment_prebook_tree" model="ir.ui.view">
+    <field name="name">appointment.prebook.tree</field>
+    <field name="model">appointment.prebook</field>
+    <field name="arch" type="xml">
+      <tree string="Prebook Logs">
+        <field name="slot_id"/>
+        <field name="visitor_id"/>
+        <field name="action"/>
+        <field name="create_date"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_appointment_prebook_tree" model="ir.actions.act_window">
+    <field name="name">Appointment Prebook Logs</field>
+    <field name="res_model">appointment.prebook</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p>Track all visitor actions on appointment forms.</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_appointment_prebook_root" name="Prebook Logs" parent="website_appointment.menu_website_appointment" sequence="50"/>
+  <menuitem id="menu_appointment_prebook_logs" name="Logs" parent="menu_appointment_prebook_root" action="action_appointment_prebook_tree"/>
+</odoo>
