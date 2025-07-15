@@ -1,0 +1,28 @@
+<odoo>
+  <!-- Track appointment form view event -->
+  <template id="track_appointment_view" inherit_id="website_appointment.slot_public">
+    <xpath expr="//form" position="attributes">
+      <attribute name="data-track-event">
+        {"event": "appointment_view", "slot_id": <t t-esc="slot.id"/>}
+      </attribute>
+    </xpath>
+  </template>
+
+  <!-- Track appointment form confirm event -->
+  <template id="track_appointment_confirm" inherit_id="website_appointment.slot_public">
+    <xpath expr="//form//button[@type='submit']" position="after">
+      <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+          var form = document.querySelector('form');
+          if (form) {
+            form.addEventListener('submit', function () {
+              website.track_event('appointment_confirm', {
+                slot_id: "<t t-esc='slot.id'/>"
+              });
+            });
+          }
+        });
+      </script>
+    </xpath>
+  </template>
+</odoo>
