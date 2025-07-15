@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+    <!-- Skriveni CSS + JS u frontendu -->
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+      <xpath expr="." position="inside">
+        <style>
+          /* Ukloni vidljivost TZ selecta */
+          .o_appointment_timezone_selection { display: none !important; }
+        </style>
+        <script type="text/javascript">
+          odoo.define('website_timezone_lock.forcetz', function (require) {
+            'use strict';
+            var widget = require('website_calendar.widget');
+            widget.include({
+              init: function (parent, options) {
+                if (parent.options &amp;&amp; parent.options.appointment_tz) {
+                  options.timezone = parent.options.appointment_tz;
+                }
+                this._super(parent, options);
+              },
+            });
+          });
+        </script>
+      </xpath>
+    </template>
+
+    <!-- Override form template: uklanjamo originalni select i ubacujemo hidden input -->
+    <template id="appointment_form_force_tz" inherit_id="appointment.appointment_form">
+      <xpath expr="//div[@class='o_appointment_timezone_selection']" position="replace"/>
+      <xpath expr="//form[@id='appointment_form']" position="inside">
+        <t t-if="appointment_id and appointment_id.appointment_tz">
+          <input type="hidden"
+                 name="timezone"
+                 t-att-value="appointment_id.appointment_tz"/>
+        </t>
+      </xpath>
+    </template>
+  </data>
+</odoo>
