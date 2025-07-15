@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <template id="hide_timezone_selector"
+              inherit_id="appointment.appointment_form">
+      <!-- Ubacujemo inline CSS pre forme -->
+      <xpath expr="//form[@class='appointment_submit_form']" position="before">
+        <style>
+          /* Sakri widget timezone selection koji JS ubacuje kasnije */
+          .o_appointment_timezone_selection {
+            display: none !important;
+          }
+        </style>
+      </xpath>
+    </template>
+  </data>
+</odoo>
