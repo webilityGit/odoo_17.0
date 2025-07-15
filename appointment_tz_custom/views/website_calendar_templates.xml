@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    <template id="appointment_form_force_tz"
+              inherit_id="appointment.appointment_form">
+      <!-- 1) Obriši TZ dropdown -->
+      <xpath expr="//div[@class='o_appointment_timezone_selection']" position="replace"/>
+
+      <!-- 2) Unutar forme ubaci inline CSS + hidden input -->
+      <xpath expr="//form[@id='appointment_form']" position="inside">
+        <!-- Sakrij eventualni leftover element -->
+        <style>
+          .o_appointment_timezone_selection { display: none !important; }
+        </style>
+        <t t-if="appointment_id and appointment_id.appointment_tz">
+          <input type="hidden"
+                 name="timezone"
+                 t-att-value="appointment_id.appointment_tz"/>
+        </t>
+      </xpath>
+    </template>
+  </data>
+</odoo>
