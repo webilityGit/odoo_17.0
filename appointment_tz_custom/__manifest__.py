@@ -4,7 +4,7 @@
     "summary": "Fiksira timezone na onu iz appointment_id.appointment_tz i uklanja dropdown",
     "author": "Vladimir",
     "category": "Website",
-    "depends": ["website_appointment", "website_calendar"],
+    "depends": ["website_appointment"],
     "data": [
         "views/website_calendar_templates.xml",
     ],
